@@ -2,16 +2,7 @@
 
 /**
  * Enoncé :
- * La classe Serpent hérite de Reptile.
- * Un serpent a un nombre de pattes définit à 0.
- * Un serpent est aussi définit par sa peau (privée) qui est par défaut neuve.
- *
- * Le calcule de sa vitesse est basé sur le statut de sa peau
- * Si elle est neuve, il avance à la vitesse 50
- * Sinon il avance à 30
- * A la fin de son déplacement sa peau passe au statut usée.
- *
- * Il a la capacité de muer (public) ce qui rend sa peau neuve.
+ * La classe Elephant hérite de Animal.
  */
 
 abstract class Animal
@@ -86,9 +77,14 @@ class Serpent extends Reptile
     }
 }
 
-$serpent = new Serpent('Snake', new DateTime('2005-01-01'));
+class Elephant extends Animal
+{
+    public function creerEnfant(): Animal
+    {
+        return new Elephant('Dumbo', new DateTime(), 4);
+    }
+}
 
-var_dump($serpent->seDeplacer());
-var_dump($serpent->seDeplacer());
-$serpent->muer();
-var_dump($serpent->seDeplacer());
+$elephant = new Elephant('Maman Dumbo', new DateTime('2005-01-01'), 4);
+
+var_dump($elephant->creerEnfant());
