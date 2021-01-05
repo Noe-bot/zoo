@@ -2,7 +2,14 @@
 
 /**
  * Enoncé :
- * La classe Elephant hérite de Animal.
+ * Un Animal a un état de santé true par défaut, false s'il se blesse. (visibilité public).
+ * Il a donc la capacité de se blesser (public).
+ *
+ * Un éleveur est définit par un nom (public).
+ * Il a en charge au moins 1 jusqu'à 10 animaux.
+ *
+ * Il dispose de la capacité de soigner ses animaux tous d'un coup s'ils sont blessés (public).
+ * Le résultat de cette méthode sera le nombre d'animaux soignés.
  */
 
 abstract class Animal
