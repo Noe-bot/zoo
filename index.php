@@ -2,15 +2,17 @@
 
 /**
  * Enoncé :
- * Une classe Animal définit par un nom (public),
- * une date de naissance (protégée) et un nombre de pattes (privé).
+ * Une classe Reptile hérite d'Animal et est définit par un nombre d'écailles (privé).
  *
- * Animal a la capacité de donner son age (public) (entier)
- * et de se déplacer à une certaine vitesse (v = d / t) (d = 10 * pattes) (public) (entier)
+ * La classe Animal devient une classe abstraite
+ * car elle a maintenant la capacité de créer un enfant (public) (Animal),
+ * mais la conception va dépendre de ses classes filles.
  *
+ * La classe Reptile pour créer un enfant a la capacité de pondre un oeuf (privée).
+ * Cette capacité va produire un nouveau Reptile.
  */
 
-class Animal
+abstract class Animal
 {
     public string $nom;
     protected DateTime $dateNaissance;
@@ -34,9 +36,27 @@ class Animal
 
         return ( 10 * $this->nbPattes) / $time;
     }
+
+    abstract public function creerEnfant(): Animal;
 }
 
-$dumbo = new Animal('Dumbo',new DateTime('1998-01-01'),4);
+class Reptile extends Animal
+{
+    private int $nbEcailles;
 
-var_dump($dumbo->monAge());
-var_dump($dumbo->seDeplacer());
+    protected function pondreOeuf(): Reptile
+    {
+        return new Reptile('Croco', new DateTime('2020-01-01'), 4);
+    }
+
+    public function creerEnfant(): Animal
+    {
+        return $this->pondreOeuf();
+    }
+}
+
+$mamanCroco = new Reptile('Maman Croco',new DateTime('1998-01-01'),4);
+
+var_dump($mamanCroco->monAge());
+var_dump($mamanCroco->seDeplacer());
+var_dump($mamanCroco->creerEnfant());
