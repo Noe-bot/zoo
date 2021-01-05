@@ -2,14 +2,16 @@
 
 /**
  * Enoncé :
- * Une classe Reptile hérite d'Animal et est définit par un nombre d'écailles (privé).
+ * La classe Serpent hérite de Reptile.
+ * Un serpent a un nombre de pattes définit à 0.
+ * Un serpent est aussi définit par sa peau (privée) qui est par défaut neuve.
  *
- * La classe Animal devient une classe abstraite
- * car elle a maintenant la capacité de créer un enfant (public) (Animal),
- * mais la conception va dépendre de ses classes filles.
+ * Le calcule de sa vitesse est basé sur le statut de sa peau
+ * Si elle est neuve, il avance à la vitesse 50
+ * Sinon il avance à 30
+ * A la fin de son déplacement sa peau passe au statut usée.
  *
- * La classe Reptile pour créer un enfant a la capacité de pondre un oeuf (privée).
- * Cette capacité va produire un nouveau Reptile.
+ * Il a la capacité de muer (public) ce qui rend sa peau neuve.
  */
 
 abstract class Animal
@@ -55,8 +57,38 @@ class Reptile extends Animal
     }
 }
 
-$mamanCroco = new Reptile('Maman Croco',new DateTime('1998-01-01'),4);
+class Serpent extends Reptile
+{
+    private int $nbPattes = 0;
+    private string $peau = 'neuve';
 
-var_dump($mamanCroco->monAge());
-var_dump($mamanCroco->seDeplacer());
-var_dump($mamanCroco->creerEnfant());
+    public function __construct(string $nom, DateTime $dateNaissance)
+    {
+        parent::__construct($nom, $dateNaissance, 0);
+    }
+
+    public function seDeplacer(): int
+    {
+        if ($this->peau === 'neuve') {
+            $vitesse = 50;
+        } else {
+            $vitesse = 30;
+        }
+
+        $this->peau = 'usée';
+
+        return $vitesse;
+    }
+
+    public function muer(): void
+    {
+        $this->peau = 'neuve';
+    }
+}
+
+$serpent = new Serpent('Snake', new DateTime('2005-01-01'));
+
+var_dump($serpent->seDeplacer());
+var_dump($serpent->seDeplacer());
+$serpent->muer();
+var_dump($serpent->seDeplacer());
