@@ -9,45 +9,46 @@ use DateTime;
 
 /**
  * Enoncé :
- * Un Animal a un état de santé true par défaut, false s'il se blesse. (visibilité public).
- * Il a donc la capacité de se blesser (public).
+ * Un Repas est un contrat qui offre la capacité d'apporter des calories,
+ * cette capacité retourne le nombre de calorie qu'elle apporte
  *
- * Un éleveur est définit par un nom (public).
- * Il a en charge au moins 1 jusqu'à 10 animaux.
+ * La Viande implémente le contrat Repas.
+ * Elle est définit par un nombre de calories.
+ * Son apport en calorie est son nombre de calorie.
  *
- * Il dispose de la capacité de soigner ses animaux tous d'un coup s'ils sont blessés (public).
- * Le résultat de cette méthode sera le nombre d'animaux soignés.
+ * Le Feuillage implémente le contrat Repas.
+ * Elle est définit par un nombre de calories et un nombre de branches.
+ * Son apport en calorie est son nombre de calorie multiplié par son nombre de branches.
+ *
+ * Un Animal est définit par un nombre de calories qui est à 0 par défaut.
+ * Son nombre de calorie est visible de tous.
+ * Il a la capacité de manger le Repas qu'on lui donne,
+ * ce qui va avoir pour effet d'incrémenter son nombre de calories en fonction du repas manger.
+ * Il a aussi la capacité de nous indiquer son nombre de calorie
  */
 
-try {
-    $eleveur = new Eleveur('John', []);
-} catch (Exception $e) {
-    var_dump($e->getMessage());
-}
+$croco = new Reptile('Croco', new DateTime('2010-01-01'), 4);
 
-try {
-    $eleveur = new Eleveur('Bob', [
-        new DateTime(),
-    ]);
-} catch (Exception $e) {
-    var_dump($e->getMessage());
-}
+$viande = new Viande(500);
 
-$serpent = new Serpent('Maman Dumbo', new DateTime('2005-01-01'));
-$serpent->seBlesser();
+dump($croco->nbCalories);
 
-$elephant = new Elephant('Dumbo', new DateTime('2008-01-01'), 4);
-$elephant->seBlesser();
+$croco->manger($viande);
 
-$reptile = new Reptile('Croco', new DateTime('2010-01-01'), 4);
+dump($croco->nbCalories);
 
-$animaux = [
-    $serpent,
-    $elephant,
-    $reptile,
-];
+$croco->manger($viande);
 
-$eleveur = new Eleveur('Robert', $animaux);
+dump($croco->nbCalories);
 
-var_dump($eleveur->soigner());
-var_dump($eleveur->soigner());
+/**---------------------------*/
+
+$dumbo = new Elephant('Dumbo', new DateTime('2008-01-01'), 4);
+
+$baobab = new Feuillage(10, 1000);
+
+dump($dumbo->nbCalories);
+
+$dumbo->manger($baobab);
+
+dump($dumbo->nbCalories);

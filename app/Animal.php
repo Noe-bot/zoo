@@ -10,6 +10,7 @@ abstract class Animal
     protected DateTime $dateNaissance;
     private int $nbPattes;
     public bool $bonneSante = true;
+    public int $nbCalories = 0;
 
     public function __construct(string $nom, DateTime $dateNaissance, int $nbPattes)
     {
@@ -33,6 +34,11 @@ abstract class Animal
     public function seBlesser(): void
     {
         $this->bonneSante = false;
+    }
+
+    public function manger(Repas $repas)
+    {
+        $this->nbCalories += $repas->apporterCalories();
     }
 
     abstract public function creerEnfant(): Animal;
