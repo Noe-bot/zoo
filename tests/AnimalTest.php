@@ -6,6 +6,7 @@ use App\Animal;
 use App\Elephant;
 use App\Reptile;
 use App\Viande;
+use DateTime;
 
 class AnimalTest extends TestCase
 {
