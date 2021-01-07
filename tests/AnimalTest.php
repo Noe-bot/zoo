@@ -4,15 +4,23 @@ namespace Tests;
 
 use App\Animal;
 use App\Elephant;
+use App\Reptile;
+use App\Viande;
 
 class AnimalTest extends TestCase
 {
     /** @test */
     public function peut_manger_un_repas_quelconque()
     {
-        $elephant = new Elephant('Bumbo', new \DateTime(), 4);
+        $croco = new Reptile('Croco', new DateTime('2010-01-01'), 4);
 
-        $this->assertInstanceOf(Animal::class, $elephant);
+        $viande = new Viande(500);
+
+        $this->assertEquals(0, $croco->nbCalories);
+
+        $croco->manger($viande);
+
+        $this->assertEquals(500, $croco->nbCalories);
     }
 
     /** @test */
