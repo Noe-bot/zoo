@@ -10,7 +10,7 @@ use DateTime;
 /**
  * Enoncé :
  * Un Repas est un contrat qui offre la capacité d'apporter des calories,
- * cette capacité retourne le nombre de calorie qu'elle apporte
+ * cette capacité retourne le nombre de calorie qu'elle apporte.
  *
  * La Viande implémente le contrat Repas.
  * Elle est définit par un nombre de calories.
@@ -24,7 +24,6 @@ use DateTime;
  * Son nombre de calorie est visible de tous.
  * Il a la capacité de manger le Repas qu'on lui donne,
  * ce qui va avoir pour effet d'incrémenter son nombre de calories en fonction du repas manger.
- * Il a aussi la capacité de nous indiquer son nombre de calorie
  */
 
 $croco = new Reptile('Croco', new DateTime('2010-01-01'), 4);
